@@ -1,0 +1,786 @@
+{
+	"info": {
+		"_postman_id": "380436d7-54d3-406b-ad26-89f2a421181d",
+		"name": "Profile",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28856603",
+		"_collection_link": "https://lively-space-395678.postman.co/workspace/My-Workspace~d2d91991-feb5-48da-8b01-e2c0fb7a467b/collection/14580085-380436d7-54d3-406b-ad26-89f2a421181d?action=share&source=collection_link&creator=28856603"
+	},
+	"item": [
+		{
+			"name": "Licensure/certifications",
+			"item": [
+				{
+					"name": "Fetch certifications",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "X-App-id",
+								"value": "{{xAppId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{manager}}/employees/102/certifications",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{manager}}",
+								"employees",
+								"102",
+								"certifications"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Disciplinary Actions",
+			"item": [
+				{
+					"name": "Fetch disciplinary actions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "X-App-id",
+								"value": "{{xAppId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{manager}}/employees/102time-and-attendance-reviews?isActiveFiscalYear=true",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{manager}}",
+								"employees",
+								"102time-and-attendance-reviews"
+							],
+							"query": [
+								{
+									"key": "isActiveFiscalYear",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Committees",
+			"item": [
+				{
+					"name": "Fetch Committees",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Verify the response code\r",
+									"pm.test(\"Status code is 200\",  () =>{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"//Verify the response body\r",
+									"// pm.test(\"Check employee id\",()=>{\r",
+									"//     const response = pm.response.json();\r",
+									"//     pm.expect(response.data[0].employeeId).to.eql(10056)\r",
+									"//     console.log(response.data[0].employeeId)\r",
+									"//     })\r",
+									"\r",
+									"pm.test(\"Expected employeeId is returned\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(response.data[0].employeeId).to.eql(pm.variables.get(\"expected\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "X-App-id",
+								"value": "{{xAppId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{manager}}/employee-committees?employeeId=102",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{manager}}",
+								"employee-committees"
+							],
+							"query": [
+								{
+									"key": "costCenterId",
+									"value": "353",
+									"disabled": true
+								},
+								{
+									"key": "employeeId",
+									"value": "102"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add committees",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "X-App-id",
+								"value": "{{xAppId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{manager}}/employee-committees",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{manager}}",
+								"employee-committees"
+							],
+							"query": [
+								{
+									"key": "costCenterId",
+									"value": "353",
+									"disabled": true
+								},
+								{
+									"key": "employeeId",
+									"value": "189",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Committees",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "X-App-id",
+								"value": "{{xAppId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{manager}}/employee-committees",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{manager}}",
+								"employee-committees"
+							],
+							"query": [
+								{
+									"key": "costCenterId",
+									"value": "353",
+									"disabled": true
+								},
+								{
+									"key": "employeeId",
+									"value": "189",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Degrees",
+			"item": [
+				{
+					"name": "Fetch Degrees",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "X-App-id",
+								"value": "{{xAppId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{manager}}/employee-degrees?employeeId=102",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{manager}}",
+								"employee-degrees"
+							],
+							"query": [
+								{
+									"key": "costCenterId",
+									"value": "353",
+									"disabled": true
+								},
+								{
+									"key": "employeeId",
+									"value": "102"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add degree",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "X-App-id",
+								"value": "{{xAppId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"employeeIds\": [\r\n        102\r\n    ],\r\n    \"startDate\": \"2023-01-17\",\r\n    \"endDate\": \"2025-01-17\",\r\n    \"degreeLevelId\": 1,\r\n    \"subject\": {\r\n        \"id\": 10,\r\n        \"name\": \"Nursing Leadership\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{manager}}/employee-degrees",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{manager}}",
+								"employee-degrees"
+							],
+							"query": [
+								{
+									"key": "costCenterId",
+									"value": "353",
+									"disabled": true
+								},
+								{
+									"key": "employeeId",
+									"value": "8299",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete degree",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "X-App-id",
+								"value": "{{xAppId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"employeeIds\": [\r\n        102\r\n    ],\r\n    \"subjectId\": 14,\r\n    \"degreeLevelId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{manager}}/employee-degrees",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{manager}}",
+								"employee-degrees"
+							],
+							"query": [
+								{
+									"key": "costCenterId",
+									"value": "353",
+									"disabled": true
+								},
+								{
+									"key": "employeeId",
+									"value": "8299",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Specialty certifications",
+			"item": [
+				{
+					"name": "Fetch Specialty certification",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "X-App-id",
+								"value": "{{xAppId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{manager}}/employee-specialty-certifications?employeeId=102",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{manager}}",
+								"employee-specialty-certifications"
+							],
+							"query": [
+								{
+									"key": "costCenterId",
+									"value": "353",
+									"disabled": true
+								},
+								{
+									"key": "employeeId",
+									"value": "102"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Specialty certification",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "X-App-id",
+								"value": "{{xAppId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"isMagnet\": true,\r\n    \"employeeIds\": [\r\n        51024\r\n    ],\r\n    \"specialtyCertificationId\": 4065,\r\n    \"specialtyCertificationName\": \"Yoyo certificate\",\r\n    \"testDate\": \"2023-05-22\",\r\n    \"expiryDate\": \"2023-05-01\",\r\n    \"removedSpecialtyCertificationId\": 4062\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{manager}}/employee-specialty-certifications",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{manager}}",
+								"employee-specialty-certifications"
+							],
+							"query": [
+								{
+									"key": "costCenterId",
+									"value": "353",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Specialty certification Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "X-App-id",
+								"value": "{{xAppId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"employeeIds\": [\r\n        51024\r\n    ],\r\n    \"specialtyCertificationId\": 4400\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/{{manager}}/employee-specialty-certifications",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{manager}}",
+								"employee-specialty-certifications"
+							],
+							"query": [
+								{
+									"key": "costCenterId",
+									"value": "353",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Professional Interests",
+			"item": [
+				{
+					"name": "Fetch Professional Interests",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "X-App-id",
+								"value": "{{xAppId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{manager}}/employee-professional-interests?employeeId=102",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{manager}}",
+								"employee-professional-interests"
+							],
+							"query": [
+								{
+									"key": "employeeId",
+									"value": "102"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Disciplinary action",
+			"item": [
+				{
+					"name": "Fetch Disciplinary Action",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "X-App-id",
+								"value": "{{xAppId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{manager}}/employees/10363/disciplinary-action-level",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{manager}}",
+								"employees",
+								"10363",
+								"disciplinary-action-level"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cost centers/Managers",
+			"item": [
+				{
+					"name": "Fetch Cost Centers and Managers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "X-App-id",
+								"value": "{{xAppId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{manager}}/employees/126/cost-centers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{manager}}",
+								"employees",
+								"126",
+								"cost-centers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Email details",
+			"item": [
+				{
+					"name": "Fetch Email Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "X-App-id",
+								"value": "{{xAppId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{manager}}/employees/1225/email-details",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{manager}}",
+								"employees",
+								"1225",
+								"email-details"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Preferences",
+			"item": [
+				{
+					"name": "Fetch Preferences",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "X-App-id",
+								"value": "{{xAppId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{manager}}/employees/103/preferences",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{manager}}",
+								"employees",
+								"103",
+								"preferences"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Phone Details",
+			"item": [
+				{
+					"name": "Fetch Phone Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "X-App-id",
+								"value": "{{xAppId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{manager}}/employees/126/phone-details",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{manager}}",
+								"employees",
+								"126",
+								"phone-details"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profile Overview",
+			"item": [
+				{
+					"name": "Fetch Profile Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "X-App-id",
+								"value": "{{xAppId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{common}}/employees/126/profile-overview",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{common}}",
+								"employees",
+								"126",
+								"profile-overview"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
