@@ -13,4 +13,4 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run API Tests
-        run: newman run "Profile.postman_collection.json" -e Laudio uat.postman_environment
+        run: newman run "Profile.postman_collection.json" -e Laudio_uat.postman_environment.json
