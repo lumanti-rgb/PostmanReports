@@ -8,9 +8,15 @@ jobs:
     runs-on: ubuntu-latest
     container: 
       image: postman/newman
-    steps:
+    steps:  
       - name: Checkout
         uses: actions/checkout@v2
+
+  dry-run:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
 
       - name: Run API Tests
         run: newman run "Profile.postman_collection.json" -e Laudio_productdemo.postman_environment.json
